@@ -9,8 +9,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/masa23/hugo-chatgpt-converter/config"
-	"github.com/sashabaranov/go-openai"
+	"github.com/masa23/aiengine-go"
+	"github.com/masa23/hugo-language-converter/config"
 )
 
 var (
@@ -31,7 +31,7 @@ func main() {
 	flag.Parse()
 
 	if showVersion {
-		fmt.Printf("hcc version %s\n", version)
+		fmt.Printf("hlc version %s\n", version)
 		return
 	}
 
@@ -67,20 +67,23 @@ func main() {
 		output = os.Stdout
 	}
 
-	client := openai.NewClient(conf.OpenAI.APIToken)
+	client := aiengine.NewClient(conf.AIEngine.APIToken)
 	message := fmt.Sprintf("%s\n\n%s\n", conf.Prompt, string(body))
+
+	req := &aiengine.ChatCompletionRequest{
+		Model:     conf.AIEngine.Model,
+		MaxTokens: conf.AIEngine.MaxTokens,
+		Messages: []aiengine.ChatCompletionRequestMessage{
+			&aiengine.ChatCompletionRequestUserMessage{
+				Role:    aiengine.ChatCompletionMessageRoleTypeUser,
+				Content: message,
+			},
+		},
+	}
 
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
-		openai.ChatCompletionRequest{
-			Model: conf.OpenAI.Model,
-			Messages: []openai.ChatCompletionMessage{
-				{
-					Role:    openai.ChatMessageRoleUser,
-					Content: message,
-				},
-			},
-		},
+		req,
 	)
 	if err != nil {
 		log.Fatalf("failed to create chat completion: %v", err)

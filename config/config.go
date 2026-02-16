@@ -7,11 +7,11 @@ import (
 )
 
 type Config struct {
-	OpenAI struct {
+	AIEngine struct {
 		APIToken  string `yaml:"APIToken"`
 		Model     string `yaml:"Model"`
 		MaxTokens int    `yaml:"MaxTokens"`
-	} `yaml:"OpenAI"`
+	} `yaml:"AIEngine"`
 	Prompt string `yaml:"Prompt"`
 }
 
