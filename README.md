@@ -1,32 +1,32 @@
-# Hugo ChatGPT Convert (hcc)
+# Hugo Language Convert (hlc)
 
 ## これは何？
 
-HugoのMarkdownをChatGPTを使って変換するためのツールです。  
+HugoのMarkdownをさくらのAI Engineを使って変換するためのツールです。  
 自分のブログの記事を英語に翻訳するために作りました。
 
 ## 使い方
 
-1. ChatGPTのAPIキーを取得します。
+1. さくらのAI EngineのAPIキーを取得します。
 2. config.yamlを編集します。
-3. `hcc`を実行します。
+3. `hlc`を実行します。
 
 ```bash
-$ hcc -input input.md -output output.md
+$ hlc -input input.md -output output.md
 
 # or
 
-$ cat input.md | hcc > output.md
+$ cat input.md | hlc > output.md
 ```
 
 ## config
 
 ```yaml
 ---
-OpenAI:
-  APIToken: "sk-xxxxxx"
-  Model: "gpt-4o-mini"
-  MaxTokens: 100
+AIEngine:
+  APIToken: "your-api-token"
+  Model: "gpt-oss-120b"
+  MaxTokens: 1000
 Prompt: |
   # Command
   * Convert the Markdown of a hugo article according to instructions

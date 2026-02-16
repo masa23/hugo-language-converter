@@ -1,8 +1,8 @@
 ---
-OpenAI:
-  APIToken: "sk-xxxxxx"
-  Model: "gpt-4o-mini"
-  MaxTokens: 100
+AIEngine:
+  APIToken: "your-api-token"
+  Model: "gpt-oss-120b"
+  MaxTokens: 1000
 Prompt: |
   # Command
   * Convert the Markdown of a hugo article according to instructions

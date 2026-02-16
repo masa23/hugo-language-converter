@@ -1,8 +1,8 @@
-module github.com/masa23/hugo-chatgpt-converter
+module github.com/masa23/hugo-language-converter
 
-go 1.21.5
+go 1.25
 
 require (
-	github.com/sashabaranov/go-openai v1.27.1
+	github.com/masa23/aiengine-go v0.0.2
 	gopkg.in/yaml.v3 v3.0.1
 )
